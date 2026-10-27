@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Customer User Program Update · October 2026</title>
+<style>
+  :root {
+    --bg: #ffffff; --elevated: #f7f7f8; --fill: #efeff1; --fill-strong: #c9c9cf;
+    --text: #18181b; --text-2: #52525b; --text-3: #71717a; --text-4: #a1a1aa;
+    --stroke: #e4e4e7; --stroke-2: #d4d4d8; --accent: #2563eb; --success: #15803d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141414; --elevated: #1b1b1c; --fill: #232325; --fill-strong: #4a4a4f;
+      --text: #ededed; --text-2: #a8a8ad; --text-3: #85858b; --text-4: #5c5c62;
+      --stroke: #2a2a2d; --stroke-2: #38383c; --accent: #6aa1ff; --success: #4ade80;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 28px 24px; min-height: 100vh;
+    display: flex; flex-direction: column; gap: 28px; }
+  nav { display: flex; flex-wrap: wrap; gap: 6px; }
+  nav button { font: inherit; font-size: 13px; padding: 5px 12px; border-radius: 999px;
+    border: 1px solid var(--stroke-2); background: transparent; color: var(--text-2); cursor: pointer; }
+  nav button.active { background: var(--fill); color: var(--text); border-color: var(--fill-strong); }
+  main { flex: 1; }
+  section { display: none; flex-direction: column; gap: 26px; }
+  section.active { display: flex; }
+  .eyebrow { font-size: 12px; font-weight: 500; letter-spacing: .6px; text-transform: uppercase; color: var(--text-3); }
+  h1 { font-size: 34px; line-height: 1.15; margin: 6px 0 0; font-weight: 650; letter-spacing: -.4px; }
+  h2 { font-size: 24px; line-height: 1.25; margin: 6px 0 0; font-weight: 620; letter-spacing: -.2px; }
+  h3 { font-size: 16px; margin: 0; font-weight: 600; }
+  p { margin: 0; }
+  .lead { color: var(--text-2); max-width: 760px; font-size: 16px; }
+  .muted { color: var(--text-2); }
+  .small { font-size: 13px; }
+  .grid { display: grid; gap: 12px; }
+  .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
+  .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .panel { border: 1px solid var(--stroke); border-radius: 10px; padding: 16px; background: var(--elevated); }
+  .panel.hl { border-color: var(--accent); background: var(--fill); }
+  .panel .t { font-weight: 600; margin-bottom: 4px; }
+  .phase .k { font-size: 12px; color: var(--text-3); }
+  .phase .s { font-size: 13px; color: var(--text-2); margin-top: 2px; }
+  .phase.hl .s { color: var(--accent); font-weight: 500; }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 28px; }
+  .stat .v { font-size: 30px; font-weight: 650; letter-spacing: -.5px; line-height: 1.1; }
+  .stat .v.good { color: var(--success); }
+  .stat .l { font-size: 13px; color: var(--text-2); margin-top: 4px; }
+  .ba { display: grid; grid-template-columns: 1fr 28px 1fr; }
+  .ba .h { font-size: 12px; font-weight: 500; color: var(--text-3); padding-bottom: 8px; }
+  .ba .c { padding: 14px 0; border-top: 1px solid var(--stroke); }
+  .ba .arr { color: var(--text-4); text-align: center; }
+  .ba .after { font-weight: 500; }
+  .note { display: flex; gap: 12px; align-items: stretch; color: var(--text-2); }
+  .bar { width: 3px; border-radius: 2px; background: var(--accent); flex-shrink: 0; }
+  .eng { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 40px; align-items: start; }
+  .tl { display: flex; flex-direction: column; }
+  .tl .item { display: flex; gap: 14px; }
+  .tl .rail { display: flex; flex-direction: column; align-items: center; width: 10px; }
+  .tl .dot { width: 10px; height: 10px; border-radius: 5px; margin-top: 5px; background: var(--fill-strong); }
+  .tl .line { flex: 1; width: 1px; background: var(--stroke-2); }
+  .tl .body { padding-bottom: 18px; }
+  .tl .when { font-size: 12px; font-weight: 500; color: var(--text-3); }
+  .tl .what { font-size: 14px; }
+  .tl .item:last-child .dot { background: var(--accent); }
+  .tl .item:last-child .what { font-weight: 600; }
+  .feats { display: flex; flex-direction: column; gap: 16px; }
+  .feat { display: flex; gap: 12px; }
+  .feat .t { font-weight: 600; }
+  .flow { display: grid; grid-template-columns: 1fr 28px 1fr 28px 1fr; gap: 8px; align-items: stretch; }
+  .flow .arr { color: var(--text-4); align-self: center; text-align: center; }
+  .dots { display: flex; flex-direction: column; gap: 11px; }
+  .dots li { list-style: none; display: flex; gap: 10px; }
+  .dots ul { margin: 0; padding: 0; }
+  .dots .d { width: 6px; height: 6px; border-radius: 3px; margin-top: 8px; flex-shrink: 0; background: var(--fill-strong); }
+  .dots.em .d { background: var(--accent); }
+  .dots.em li { font-weight: 500; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .pill { font-size: 13px; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--stroke-2); }
+  footer { display: flex; align-items: center; gap: 8px; border-top: 1px solid var(--stroke); padding-top: 14px; }
+  footer .count { font-size: 13px; color: var(--text-3); flex: 1; }
+  footer button { font: inherit; font-size: 13px; padding: 5px 14px; border-radius: 6px; cursor: pointer;
+    border: 1px solid var(--stroke-2); background: transparent; color: var(--text); }
+  footer button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  footer button:disabled { opacity: .4; cursor: default; }
+  .credits { font-size: 13px; color: var(--text-3); }
+  @media (max-width: 760px) {
+    .g2, .g3, .stats, .eng { grid-template-columns: 1fr; }
+    .flow { grid-template-columns: 1fr; } .flow .arr { transform: rotate(90deg); } .flow .spacer { display: none; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav id="nav"></nav>
+  <main>
+
+    <section data-label="Overview">
+      <div>
+        <div class="eyebrow">Customer User Program · October 2026</div>
+        <h1>One trusted customer identity</h1>
+      </div>
+      <p class="lead">Customer User is Sunrun's single record of who a customer is, how they log in, and which homes and systems they can access, across the customer app, portal.sunrun.com, InfoHub and Salesforce.</p>
+      <div class="grid g3">
+        <div class="panel phase"><div class="k">Phase 1</div><div class="t">Auditing &amp; Tools</div><div class="s">Complete</div></div>
+        <div class="panel phase"><div class="k">Phase 2</div><div class="t">Data Reconciliation</div><div class="s">Complete</div></div>
+        <div class="panel phase hl"><div class="k">Phase 3</div><div class="t">Migration</div><div class="s">Underway</div></div>
+      </div>
+      <h3>Impact so far</h3>
+      <div class="stats">
+        <div class="stat"><div class="v good">78%</div><div class="l">of ~2.9M eligible opportunities have a customer record</div></div>
+        <div class="stat"><div class="v">87%</div><div class="l">coverage post-PTO</div></div>
+        <div class="stat"><div class="v">85%</div><div class="l">of active app users already on Customer User</div></div>
+        <div class="stat"><div class="v">356K</div><div class="l">previously unlinked systems connected to owners</div></div>
+        <div class="stat"><div class="v">+25%</div><div class="l">successful self-service corrections</div></div>
+        <div class="stat"><div class="v">10x</div><div class="l">daily adoption of in-app verification</div></div>
+      </div>
+    </section>
+
+    <section data-label="Why">
+      <div>
+        <div class="eyebrow">Why we built it</div>
+        <h2>Identity used to live on scattered Contact records</h2>
+      </div>
+      <p class="muted">No single answer to "who is this person?" Here's what changed.</p>
+      <div class="ba">
+        <div class="h">Before</div><div></div><div class="h">With Customer User</div>
+        <div class="c muted">Phone login and email login could show different homes</div><div class="c arr">→</div><div class="c after">One person, one record, every home and system they can access</div>
+        <div class="c muted">Editing contact info could cut off app access</div><div class="c arr">→</div><div class="c after">Verified edits sync across every system the customer owns</div>
+        <div class="c muted">Missed bills, autopay, appointments on non-default contracts</div><div class="c arr">→</div><div class="c after">Systems linked to the person, not to a single Contact</div>
+        <div class="c muted">Fake emails linked unrelated customers together</div><div class="c arr">→</div><div class="c after">Every email and phone belongs to exactly one person</div>
+        <div class="c muted">Every feature built its own identity workaround</div><div class="c arr">→</div><div class="c after">A single customerUserId any app can key off</div>
+      </div>
+    </section>
+
+    <section data-label="Customer impact">
+      <div>
+        <div class="eyebrow">Completed · what customers and Care see</div>
+        <h2>Real customer scenarios, handled automatically</h2>
+      </div>
+      <div class="grid g3">
+        <div class="panel"><div class="t">New Homes</div><p class="small muted">Customer record created at the builder hand-off, so builder contact info never becomes the homeowner's login.</p></div>
+        <div class="panel"><div class="t">Service transfers</div><p class="small muted">Buyer becomes the current owner and the seller moves to previous owner, automatically.</p></div>
+        <div class="panel"><div class="t">Owner &amp; contact changes</div><p class="small muted">When the contract contact or primary homeowner changes, ownership follows.</p></div>
+        <div class="panel"><div class="t">Multi-system homes</div><p class="small muted">Location ID on every system: the foundation for Consolidated Home.</p></div>
+        <div class="panel"><div class="t">Verified self-service</div><p class="small muted">Customers verify and update email and phone in the app, and can remove a phone number.</p></div>
+        <div class="panel"><div class="t">Care tooling in InfoHub</div><p class="small muted">Agents view, edit, create and merge customers, see previous owners and a full audit log.</p></div>
+      </div>
+      <div class="note"><div class="bar"></div><p>About <strong style="color:var(--text)">4K new customer records</strong> created in the first 24 hours of event-driven and login-triggered provisioning.</p></div>
+    </section>
+
+    <section data-label="Engineering">
+      <div>
+        <div class="eyebrow">Completed · engineering milestones</div>
+        <h2>A new identity platform, built in under a year</h2>
+      </div>
+      <div class="eng">
+        <div class="tl">
+          <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">Dec 2025</div><div class="what">customer-user-service launched with create and conflict evaluation</div></div></div>
+          <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">Jan 2026</div><div class="what">New identity objects live in Salesforce; fake email and phone cleanup</div></div></div>
+          <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">Feb–Apr</div><div class="what">Existing customer base loaded; bulk data cleanup; in-app login verification</div></div></div>
+          <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">May–Jul</div><div class="what">InfoHub tooling to 100% of Care; audit log; merge users; automated orphan cleanup</div></div></div>
+          <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">Aug–Sep</div><div class="what">Location ID, service transfers, New Homes; event-driven and login-triggered provisioning</div></div></div>
+          <div class="item"><div class="rail"><div class="dot"></div></div><div class="body"><div class="when">Oct</div><div class="what">New Get User live in production shadow mode; ownership follows contact changes</div></div></div>
+        </div>
+        <div class="feats">
+          <div class="feat"><div class="bar"></div><div><div class="t">Identity model in Salesforce</div><p class="small muted">Customer User, Customer User Login and Customer User System: the person, their verified logins, and every home they can access.</p></div></div>
+          <div class="feat"><div class="bar"></div><div><div class="t">Global login uniqueness</div><p class="small muted">One email or phone can belong to only one person.</p></div></div>
+          <div class="feat"><div class="bar"></div><div><div class="t">Single identity writer</div><p class="small muted">customer-user-service owns create, merge, conflict evaluation, audit and sync back to Contact.</p></div></div>
+          <div class="feat"><div class="bar"></div><div><div class="t">Event-driven provisioning</div><p class="small muted">Salesforce change events (Opportunity, homeowner, Service Contract, Solar Decision, Reassignment) keep identity current automatically.</p></div></div>
+          <div class="feat"><div class="bar"></div><div><div class="t">New Get User</div><p class="small muted">Login reads from a near-real-time replica instead of a cache with a slow Salesforce fallback. One cutover covers the app and portal.sunrun.com.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section data-label="Where the data lives">
+      <div>
+        <div class="eyebrow">Where the data lives</div>
+        <h2>Built in Salesforce, so everyone can consume it</h2>
+      </div>
+      <p class="lead">Every CRM table already replicates to the CDC replica and Snowflake, so Customer User was available to services, analytics and Data 360 from day one, with no new pipelines.</p>
+      <div class="flow">
+        <div class="panel hl"><div class="t">Salesforce</div><p class="small muted">System of record for Customer User, Login and System objects</p></div>
+        <div class="arr">→</div>
+        <div class="panel"><div class="t">CDC replica (RDS)</div><p class="small muted">Near-real-time copy that powers login and services via the Customer User API</p></div>
+        <div class="arr">→</div>
+        <div class="panel"><div class="t">Customer app · portal.sunrun.com</div><p class="small muted">Login resolves the person and all their homes</p></div>
+      </div>
+      <div class="flow">
+        <div class="spacer"></div><div class="spacer"></div>
+        <div class="panel"><div class="t">Snowflake</div><p class="small muted">Replicated like every CRM table, for analytics and reporting</p></div>
+        <div class="arr">→</div>
+        <div class="panel"><div class="t">Analytics · Data 360</div><p class="small muted">Customer-level reporting and marketing with no new pipeline</p></div>
+      </div>
+      <h3>How to link up</h3>
+      <div class="grid g3">
+        <div class="panel"><div class="t">Customer User ID = the person</div><p class="small muted">Use it as the person key everywhere.</p></div>
+        <div class="panel"><div class="t">masterId = the contract at a site</div><p class="small muted">Join billing, contract and system data. A customer groups their masterIds.</p></div>
+        <div class="panel"><div class="t">Change identity through Customer User</div><p class="small muted">Customer User keeps Contact email and phone in sync on every system.</p></div>
+      </div>
+    </section>
+
+    <section data-label="What's next">
+      <div>
+        <div class="eyebrow">What's next</div>
+        <h2>Cutover this fall</h2>
+      </div>
+      <div class="grid g2">
+        <div class="dots"><h3>In progress</h3><ul class="dots">
+          <li><span class="d"></span>Secondary users: a second person on a home as a first-class user</li>
+          <li><span class="d"></span>In-app migration notice ahead of cutover</li>
+          <li><span class="d"></span>Point-of-sale checks that flag and fix missing customer records</li>
+          <li><span class="d"></span>Account Center cleanup</li>
+          <li><span class="d"></span>Location ID backfill on opportunities</li>
+        </ul></div>
+        <div class="dots em"><h3>Shipping next</h3><ul class="dots">
+          <li><span class="d"></span>Get User cutover: phased in November, full migration in December</li>
+          <li><span class="d"></span>Secondary users end to end: InfoHub management, auto-removal when a home is sold</li>
+          <li><span class="d"></span>Verified email required to log in</li>
+          <li><span class="d"></span>Data completeness backfills and legacy code retirement</li>
+        </ul></div>
+      </div>
+      <div class="panel" style="background:var(--fill)">
+        <div class="small" style="color:var(--text-3);font-weight:500">What this unlocks</div>
+        <div class="pills"><span class="pill">Consolidated Home</span><span class="pill">Per-customer notification preferences</span><span class="pill">Accurate upsell targeting</span></div>
+      </div>
+      <p class="credits">Team: Cameron Gale, Ryne Gross, Tim Hagel, Santhosh Bheema, Lev Ganochkin · PM: Abby</p>
+    </section>
+
+  </main>
+  <footer>
+    <span class="count" id="count"></span>
+    <button id="prev">Previous</button>
+    <button id="next" class="primary">Next</button>
+  </footer>
+</div>
+<script>
+  const sections = [...document.querySelectorAll("section")];
+  const nav = document.getElementById("nav");
+  let i = Math.max(0, Math.min(sections.length - 1, (parseInt(location.hash.slice(1), 10) || 1) - 1));
+  const buttons = sections.map((s, n) => {
+    const b = document.createElement("button");
+    b.textContent = s.dataset.label;
+    b.onclick = () => go(n);
+    nav.appendChild(b);
+    return b;
+  });
+  function go(n) {
+    i = Math.max(0, Math.min(sections.length - 1, n));
+    sections.forEach((s, k) => s.classList.toggle("active", k === i));
+    buttons.forEach((b, k) => b.classList.toggle("active", k === i));
+    document.getElementById("count").textContent = `${i + 1} / ${sections.length}`;
+    document.getElementById("prev").disabled = i === 0;
+    document.getElementById("next").disabled = i === sections.length - 1;
+    history.replaceState(null, "", `#${i + 1}`);
+  }
+  document.getElementById("prev").onclick = () => go(i - 1);
+  document.getElementById("next").onclick = () => go(i + 1);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || e.key === " ") go(i + 1);
+    if (e.key === "ArrowLeft") go(i - 1);
+  });
+  go(i);
+</script>
+</body>
+</html>
