@@ -117,7 +117,7 @@
       <div class="stats">
         <div class="stat"><div class="v good">78%</div><div class="l">of ~3.7M eligible opportunities (~2.9M) have a customer record</div></div>
         <div class="stat"><div class="v">87%</div><div class="l">coverage post-PTO</div></div>
-        <div class="stat"><div class="v">85%</div><div class="l">of active app users already on Customer User</div></div>
+        <div class="stat"><div class="v">89%</div><div class="l">of active app users already on Customer User</div></div>
         <div class="stat"><div class="v">356K</div><div class="l">previously unlinked systems connected to owners</div></div>
         <div class="stat"><div class="v">+25%</div><div class="l">successful self-service corrections</div></div>
         <div class="stat"><div class="v">10x</div><div class="l">daily adoption of in-app verification</div></div>
@@ -133,9 +133,10 @@
       <div class="ba">
         <div class="h">Before</div><div></div><div class="h">With Customer User</div>
         <div class="c muted">Phone login and email login could show different homes</div><div class="c arr">→</div><div class="c after">One person, one record, every home and system they can access</div>
-        <div class="c muted">Editing contact info could cut off app access</div><div class="c arr">→</div><div class="c after">Verified edits sync across every system the customer owns</div>
-        <div class="c muted">Missed bills, autopay, appointments on non-default contracts</div><div class="c arr">→</div><div class="c after">Systems linked to the person, not to a single Contact</div>
-        <div class="c muted">Fake emails linked unrelated customers together</div><div class="c arr">→</div><div class="c after">Every email and phone belongs to exactly one person</div>
+        <div class="c muted">Editing contact info could cut off app access</div><div class="c arr">→</div><div class="c after">User-centric edits in InfoHub sync across every system the customer owns</div>
+        <div class="c muted">Missed bills, autopay, appointments on non-default contracts</div><div class="c arr">→</div><div class="c after">Consistent system linking enables consolidated views for multi-contract users</div>
+        <div class="c muted">Fake or sales rep emails and phones linked unrelated customers together</div><div class="c arr">→</div><div class="c after">Every email and phone belongs to exactly one person</div>
+        <div class="c muted">Multiple paths for customer profile lookup (GCP and SFDC)</div><div class="c arr">→</div><div class="c after">Single customer profile lookup simplifies maintenance and reduces risk of inconsistent behavior from different data sources</div>
         <div class="c muted">Every feature built its own identity workaround</div><div class="c arr">→</div><div class="c after">A single customerUserId any app can key off</div>
       </div>
     </section>
@@ -167,8 +168,8 @@
           <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">Jan 2026</div><div class="what">New identity objects live in Salesforce; fake email and phone cleanup</div></div></div>
           <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">Feb–Apr</div><div class="what">Existing customer base loaded; bulk data cleanup; in-app login verification</div></div></div>
           <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">May–Jul</div><div class="what">InfoHub tooling to 100% of Care; audit log; merge users; automated orphan cleanup</div></div></div>
-          <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">Aug–Sep</div><div class="what">Location ID, service transfers, New Homes; event-driven and login-triggered provisioning</div></div></div>
-          <div class="item"><div class="rail"><div class="dot"></div></div><div class="body"><div class="when">Oct</div><div class="what">New Get User live in production shadow mode; ownership follows contact changes</div></div></div>
+          <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">Aug–Sep</div><div class="what">Location ID, service transfers, New Homes; event-driven and login-triggered provisioning; continued data cleanup</div></div></div>
+          <div class="item"><div class="rail"><div class="dot"></div></div><div class="body"><div class="when">Oct</div><div class="what">New Get User live in production shadow mode; migration cutover planning</div></div></div>
         </div>
         <div class="feats">
           <div class="feat"><div class="bar"></div><div><div class="t">Identity model in Salesforce</div><p class="small muted">Customer User, Customer User Login and Customer User System: the person, their verified logins, and every home they can access.</p></div></div>
@@ -202,8 +203,8 @@
       <h3>How to link up</h3>
       <div class="grid g3">
         <div class="panel"><div class="t">Customer User ID = the person</div><p class="small muted">Use it as the person key everywhere.</p></div>
-        <div class="panel"><div class="t">masterId = the contract at a site</div><p class="small muted">Join billing, contract and system data. A customer groups their masterIds.</p></div>
-        <div class="panel"><div class="t">Change identity through Customer User</div><p class="small muted">Customer User keeps Contact email and phone in sync on every system.</p></div>
+        <div class="panel"><div class="t">System = Person + Opportunity</div><p class="small muted">Join service contract, opportunity, project, proposal, or billing data.</p></div>
+        <div class="panel"><div class="t">Change identity through Customer User</div><p class="small muted">Customer User is the source of truth for customer email and phone. All updates write to the user and its contacts to keep them in sync.</p></div>
       </div>
     </section>
 
@@ -217,8 +218,8 @@
           <li><span class="d"></span>Secondary users: a second person on a home as a first-class user</li>
           <li><span class="d"></span>In-app migration notice ahead of cutover</li>
           <li><span class="d"></span>Point-of-sale checks that flag and fix missing customer records</li>
-          <li><span class="d"></span>Account Center cleanup</li>
           <li><span class="d"></span>Location ID backfill on opportunities</li>
+          <li><span class="d"></span>Auth token updates to support new Customer User data</li>
         </ul></div>
         <div class="dots em"><h3>Shipping next</h3><ul class="dots">
           <li><span class="d"></span>Sunrun app login moves to Customer User: phased in November, full in December</li>
