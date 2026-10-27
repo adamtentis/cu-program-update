@@ -186,7 +186,7 @@
         <div class="eyebrow">Where the data lives</div>
         <h2>Live in production. Start using it today.</h2>
       </div>
-      <p class="lead">Every CRM table already replicates to the CDC replica and Snowflake, so Customer User was available to services, analytics and Data 360 from day one, with no new pipelines.</p>
+      <p class="lead">Every CRM table already replicates to the CDC replica and Snowflake, so Customer User was available to services and analytics from day one, and is ready for Data 360, with no new pipelines.</p>
       <div class="flow">
         <div class="panel hl"><div class="t">Salesforce</div><p class="small muted">System of record for Customer User, Login and System objects</p></div>
         <div class="arr">→</div>
@@ -230,12 +230,12 @@
         </ul></div>
       </div>
       <div class="note"><div class="bar"></div><div>
-        <div style="font-weight:600;color:var(--text);margin-bottom:6px">Customer User as the identity backbone for Data 360 (CDP)</div>
+        <div style="font-weight:600;color:var(--text);margin-bottom:6px">Planned: Customer User as the identity backbone for Data 360 (CDP)</div>
         <ul class="dots" style="margin:0;padding:0">
-          <li><span class="d"></span>Customer User objects are a Data 360 source from day one, from Salesforce and Snowflake with no new pipeline</li>
-          <li><span class="d"></span>Customer User ID anchors identity for known customers, so the unified profile matches Customer User</li>
-          <li><span class="d"></span>Data 360 matching extends to what Customer User doesn't cover: leads, web visitors, marketing contacts</li>
-          <li><span class="d"></span>Customer User stays the single writer of customer email and phone</li>
+          <li><span class="d"></span>Before an opportunity exists, Data 360 handles identity for leads, web visitors and marketing contacts</li>
+          <li><span class="d"></span>From opportunity creation onward, Customer User becomes the identity backbone, and Customer User ID anchors the unified profile</li>
+          <li><span class="d"></span>Customer User data flows in from Salesforce and Snowflake with no new pipeline</li>
+          <li><span class="d"></span>Customer User remains the source of truth for customer email and phone</li>
         </ul>
       </div></div>
       <div class="panel" style="background:var(--fill)">
