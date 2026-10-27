@@ -114,7 +114,7 @@
       </div>
       <h3>Impact so far</h3>
       <div class="stats">
-        <div class="stat"><div class="v good">78%</div><div class="l">of ~2.9M eligible opportunities have a customer record</div></div>
+        <div class="stat"><div class="v good">78%</div><div class="l">of ~3.7M eligible opportunities (~2.9M) have a customer record</div></div>
         <div class="stat"><div class="v">87%</div><div class="l">coverage post-PTO</div></div>
         <div class="stat"><div class="v">85%</div><div class="l">of active app users already on Customer User</div></div>
         <div class="stat"><div class="v">356K</div><div class="l">previously unlinked systems connected to owners</div></div>
@@ -221,14 +221,24 @@
         </ul></div>
         <div class="dots em"><h3>Shipping next</h3><ul class="dots">
           <li><span class="d"></span>Get User cutover: phased in November, full migration in December</li>
+          <li><span class="d"></span>Close the gap: remaining ~80K active app users and ~800K opportunities</li>
           <li><span class="d"></span>Secondary users end to end: InfoHub management, auto-removal when a home is sold</li>
           <li><span class="d"></span>Verified email required to log in</li>
           <li><span class="d"></span>Data completeness backfills and legacy code retirement</li>
         </ul></div>
       </div>
+      <div class="note"><div class="bar"></div><div>
+        <div style="font-weight:600;color:var(--text);margin-bottom:6px">Customer User as the identity backbone for Data 360 (CDP)</div>
+        <ul class="dots" style="margin:0;padding:0">
+          <li><span class="d"></span>Customer User objects are a Data 360 source from day one, from Salesforce and Snowflake with no new pipeline</li>
+          <li><span class="d"></span>Customer User ID anchors identity for known customers, so the unified profile matches Customer User</li>
+          <li><span class="d"></span>Data 360 matching extends to what Customer User doesn't cover: leads, web visitors, marketing contacts</li>
+          <li><span class="d"></span>Customer User stays the single writer of customer email and phone</li>
+        </ul>
+      </div></div>
       <div class="panel" style="background:var(--fill)">
         <div class="small" style="color:var(--text-3);font-weight:500">What this unlocks</div>
-        <div class="pills"><span class="pill">Consolidated Home</span><span class="pill">Per-customer notification preferences</span><span class="pill">Accurate upsell targeting</span></div>
+        <div class="pills"><span class="pill">Consolidated Home</span><span class="pill">Per-customer notification preferences</span><span class="pill">Accurate upsell and marketing targeting through Data 360</span></div>
       </div>
       <p class="credits">Team: Cameron Gale, Ryne Gross, Tim Hagel, Santhosh Bheema, Lev Ganochkin · PM: Abby</p>
     </section>
