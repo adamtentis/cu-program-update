@@ -106,12 +106,12 @@
         <div class="eyebrow">Customer User Program · October 2026</div>
         <h1>One trusted customer identity</h1>
       </div>
-      <p class="lead">Customer User is Sunrun's single record of who a customer is, how they log in, and which homes and systems they can access, across the customer app, portal.sunrun.com, InfoHub and Salesforce.</p>
-      <div class="note"><div class="bar"></div><p><strong style="color:var(--text)">Live in production today.</strong> Care uses it in InfoHub, the Sunrun app uses it for verification and self-service, and any app or experience can start using Customer User data now.</p></div>
+      <p class="lead">Customer User is Sunrun's trusted record of who a customer is, how they log in, and which homes and systems they can access, across the customer app, portal.sunrun.com, InfoHub and Salesforce.</p>
+      <div class="note"><div class="bar"></div><p><strong style="color:var(--text)">Live in production today.</strong> Care uses it in InfoHub, the Sunrun app uses it for verification and self-service, and it's built for other apps and experiences to use too.</p></div>
       <div class="grid g3">
         <div class="panel phase"><div class="k">Phase 1</div><div class="t">Auditing &amp; Tools</div><div class="s">Complete · in production</div></div>
         <div class="panel phase"><div class="k">Phase 2</div><div class="t">Data Reconciliation</div><div class="s">Complete · in production</div></div>
-        <div class="panel phase hl"><div class="k">Phase 3</div><div class="t">Sunrun app login migration</div><div class="s">Underway · cutover this fall</div></div>
+        <div class="panel phase hl"><div class="k">Phase 3</div><div class="t">Sunrun app login migration</div><div class="s">Underway · in production shadow mode · cutover this fall</div></div>
       </div>
       <h3>Impact so far</h3>
       <div class="stats">
@@ -132,10 +132,10 @@
       <p class="muted">No single answer to "who is this person?" Here's what changed.</p>
       <div class="ba">
         <div class="h">Before</div><div></div><div class="h">With Customer User</div>
-        <div class="c muted">Phone login and email login could show different homes</div><div class="c arr">→</div><div class="c after">One person, one record, every home and system they can access</div>
+        <div class="c muted">Phone login and email login could show different homes</div><div class="c arr">→</div><div class="c after">One trusted customer record, with every home and system they can access</div>
         <div class="c muted">Editing contact info could cut off app access</div><div class="c arr">→</div><div class="c after">User-centric edits in InfoHub sync across every system the customer owns</div>
         <div class="c muted">Missed bills, autopay, appointments on non-default contracts</div><div class="c arr">→</div><div class="c after">Consistent system linking enables consolidated views for multi-contract users</div>
-        <div class="c muted">Fake or sales rep emails and phones linked unrelated customers together</div><div class="c arr">→</div><div class="c after">Every email and phone belongs to exactly one person</div>
+        <div class="c muted">Fake or sales rep emails and phones linked unrelated customers together</div><div class="c arr">→</div><div class="c after">Every email and phone belongs to exactly one Customer User</div>
         <div class="c muted">Multiple paths for customer profile lookup (GCP and SFDC)</div><div class="c arr">→</div><div class="c after">Single customer profile lookup simplifies maintenance and reduces risk of inconsistent behavior from different data sources</div>
         <div class="c muted">Every feature built its own identity workaround</div><div class="c arr">→</div><div class="c after">A single customerUserId any app can key off</div>
       </div>
@@ -150,6 +150,7 @@
         <div class="panel"><div class="t">New Homes</div><p class="small muted">Customer record created at the builder hand-off, so builder contact info never becomes the homeowner's login.</p></div>
         <div class="panel"><div class="t">Service transfers</div><p class="small muted">Buyer becomes the current owner and the seller moves to previous owner, automatically.</p></div>
         <div class="panel"><div class="t">Owner &amp; contact changes</div><p class="small muted">When the contract contact or primary homeowner changes, ownership follows.</p></div>
+        <div class="panel"><div class="t">Records created at login</div><p class="small muted">A customer who logs in without a record gets one created automatically from what they signed in with, even when some account data is incomplete.</p></div>
         <div class="panel"><div class="t">Multi-system homes</div><p class="small muted">Location ID on every system: the foundation for Consolidated Home.</p></div>
         <div class="panel"><div class="t">Verified self-service</div><p class="small muted">Customers verify and update email and phone in the app, and can remove a phone number.</p></div>
         <div class="panel"><div class="t">Care tooling in InfoHub</div><p class="small muted">Agents view, edit, create and merge customers, see previous owners and a full audit log.</p></div>
@@ -169,11 +170,11 @@
           <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">Feb–Apr</div><div class="what">Existing customer base loaded; bulk data cleanup; in-app login verification</div></div></div>
           <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">May–Jul</div><div class="what">InfoHub tooling to 100% of Care; audit log; merge users; automated orphan cleanup</div></div></div>
           <div class="item"><div class="rail"><div class="dot"></div><div class="line"></div></div><div class="body"><div class="when">Aug–Sep</div><div class="what">Location ID, service transfers, New Homes; event-driven and login-triggered provisioning; continued data cleanup</div></div></div>
-          <div class="item"><div class="rail"><div class="dot"></div></div><div class="body"><div class="when">Oct</div><div class="what">New Get User live in production shadow mode; migration cutover planning</div></div></div>
+          <div class="item"><div class="rail"><div class="dot"></div></div><div class="body"><div class="when">Oct</div><div class="what">New Get User and login live in production shadow mode; ownership follows contact changes; migration cutover planning</div></div></div>
         </div>
         <div class="feats">
-          <div class="feat"><div class="bar"></div><div><div class="t">Identity model in Salesforce</div><p class="small muted">Customer User, Customer User Login and Customer User System: the person, their verified logins, and every home they can access.</p></div></div>
-          <div class="feat"><div class="bar"></div><div><div class="t">Global login uniqueness</div><p class="small muted">One email or phone can belong to only one person.</p></div></div>
+          <div class="feat"><div class="bar"></div><div><div class="t">Identity model in Salesforce</div><p class="small muted">Customer User, Customer User Login and Customer User System: the customer, their verified logins, and every home they can access.</p></div></div>
+          <div class="feat"><div class="bar"></div><div><div class="t">Global login uniqueness</div><p class="small muted">One email or phone can belong to only one Customer User.</p></div></div>
           <div class="feat"><div class="bar"></div><div><div class="t">Single identity writer</div><p class="small muted">customer-user-service owns create, merge, conflict evaluation, audit and sync back to Contact.</p></div></div>
           <div class="feat"><div class="bar"></div><div><div class="t">Event-driven provisioning</div><p class="small muted">Salesforce change events (Opportunity, homeowner, Service Contract, Solar Decision, Reassignment) keep identity current automatically.</p></div></div>
           <div class="feat"><div class="bar"></div><div><div class="t">New Get User</div><p class="small muted">Login reads from a near-real-time replica instead of a cache with a slow Salesforce fallback. One cutover covers the app and portal.sunrun.com.</p></div></div>
@@ -184,26 +185,26 @@
     <section data-label="Where the data lives">
       <div>
         <div class="eyebrow">Where the data lives</div>
-        <h2>Live in production. Start using it today.</h2>
+        <h2>Data and integrations available</h2>
       </div>
-      <p class="lead">Every CRM table already replicates to the CDC replica and Snowflake, so Customer User was available to services and analytics from day one, and is ready for Data 360, with no new pipelines.</p>
+      <p class="lead">Customer User data is ready now. It replicates to the CDC replica and Snowflake like every CRM table, so services and analytics get it with no new pipelines. Records start at opportunity creation, so leads aren't covered.</p>
       <div class="flow">
         <div class="panel hl"><div class="t">Salesforce</div><p class="small muted">System of record for Customer User, Login and System objects</p></div>
         <div class="arr">→</div>
         <div class="panel"><div class="t">CDC replica (RDS)</div><p class="small muted">Near-real-time copy that powers login and services via the Customer User API</p></div>
         <div class="arr">→</div>
-        <div class="panel"><div class="t">Customer app · portal.sunrun.com</div><p class="small muted">Login resolves the person and all their homes</p></div>
+        <div class="panel"><div class="t">Customer app · portal.sunrun.com</div><p class="small muted">Login resolves the customer and all their homes</p></div>
       </div>
       <div class="flow">
         <div class="spacer"></div><div class="spacer"></div>
         <div class="panel"><div class="t">Snowflake</div><p class="small muted">Replicated like every CRM table, for analytics and reporting</p></div>
         <div class="arr">→</div>
-        <div class="panel"><div class="t">Analytics · Data 360</div><p class="small muted">Customer-level reporting and marketing with no new pipeline</p></div>
+        <div class="panel"><div class="t">Analytics</div><p class="small muted">Customer-level reporting with no new pipeline, and a proposed Data 360 integration</p></div>
       </div>
       <h3>How to link up</h3>
       <div class="grid g3">
-        <div class="panel"><div class="t">Customer User ID = the person</div><p class="small muted">Use it as the person key everywhere.</p></div>
-        <div class="panel"><div class="t">System = Person + Opportunity</div><p class="small muted">Join service contract, opportunity, project, proposal, or billing data.</p></div>
+        <div class="panel"><div class="t">Customer User ID = the customer</div><p class="small muted">Use it as the customer key everywhere.</p></div>
+        <div class="panel"><div class="t">System = Customer User + Opportunity</div><p class="small muted">Join service contract, opportunity, project, proposal, or billing data.</p></div>
         <div class="panel"><div class="t">Change identity through Customer User</div><p class="small muted">Customer User is the source of truth for customer email and phone. All updates write to the user and its contacts to keep them in sync.</p></div>
       </div>
     </section>
@@ -216,13 +217,14 @@
       <div class="grid g2">
         <div class="dots"><h3>In progress</h3><ul class="dots">
           <li><span class="d"></span>Secondary users: a second person on a home as a first-class user</li>
-          <li><span class="d"></span>In-app migration notice ahead of cutover</li>
+          <li><span class="d"></span>In-app migration banner that flags account issues for customers ahead of cutover</li>
+          <li><span class="d"></span>New Get User shadow comparison and accuracy checks</li>
           <li><span class="d"></span>Point-of-sale checks that flag and fix missing customer records</li>
           <li><span class="d"></span>Location ID backfill on opportunities</li>
           <li><span class="d"></span>Auth token updates to support new Customer User data</li>
         </ul></div>
         <div class="dots em"><h3>Shipping next</h3><ul class="dots">
-          <li><span class="d"></span>Sunrun app login moves to Customer User: phased in November, full in December</li>
+          <li><span class="d"></span>Sunrun app login moves to Customer User: in production shadow mode now, phased in November, full in December</li>
           <li><span class="d"></span>Close the gap: remaining 147K post-PTO customers and the last active app users</li>
           <li><span class="d"></span>Secondary users end to end: InfoHub management, auto-removal when a home is sold</li>
           <li><span class="d"></span>Verified email required to log in</li>
@@ -230,19 +232,20 @@
         </ul></div>
       </div>
       <div class="note"><div class="bar"></div><div>
-        <div style="font-weight:600;color:var(--text);margin-bottom:6px">Planned: Customer User as the identity backbone for Data 360 (CDP)</div>
+        <div style="font-weight:600;color:var(--text);margin-bottom:2px">Proposed: Customer User as an identity source for Data 360 (CDP)</div>
+        <p class="small muted" style="margin:0 0 6px">A collaborative approach we're exploring with the Data 360 team.</p>
         <ul class="dots" style="margin:0;padding:0">
-          <li><span class="d"></span>Before an opportunity exists, Data 360 handles identity for leads, web visitors and marketing contacts</li>
-          <li><span class="d"></span>From opportunity creation onward, Customer User becomes the identity backbone, and Customer User ID anchors the unified profile</li>
-          <li><span class="d"></span>Customer User data flows in from Salesforce and Snowflake with no new pipeline</li>
+          <li><span class="d"></span>Before an opportunity exists, Data 360 covers leads, web visitors and marketing contacts</li>
+          <li><span class="d"></span>From opportunity creation onward, Customer User could serve as the identity source</li>
+          <li><span class="d"></span>Customer User data is ready now in Salesforce and Snowflake with no new pipeline, but it isn't usable for leads until an opportunity exists</li>
           <li><span class="d"></span>Customer User remains the source of truth for customer email and phone</li>
         </ul>
       </div></div>
       <div class="panel" style="background:var(--fill)">
         <div class="small" style="color:var(--text-3);font-weight:500">What this unlocks</div>
-        <div class="pills"><span class="pill">Consolidated Home</span><span class="pill">Per-customer notification preferences</span><span class="pill">Accurate upsell and marketing targeting through Data 360</span></div>
+        <div class="pills"><span class="pill">Consolidated Home</span><span class="pill">Per-customer notification preferences</span><span class="pill">Accurate upsell and marketing targeting</span></div>
       </div>
-      <p class="credits"><strong>Dev team:</strong> Tim Hagel, Cameron Gale, Ryne Gross · <strong>Leadership, program &amp; design:</strong> Adam Tentis, Abby Codamo, Fernando Wang · <strong>Supporting team members:</strong> Santhosh Bheema, Prashanth Veloori Sairaj, Syed Nizam, Parker Crist, Mohit Kumar Sahu</p>
+      <p class="credits"><strong>Dev team:</strong> Tim Hagel, Cameron Gale, Ryne Gross<br><strong>Leadership, program &amp; design:</strong> Adam Tentis, Abby Codamo, Fernando Wang<br><strong>Supporting team members:</strong> Santhosh Bheema, Prashanth Veloori Sairaj, Syed Nizam, Parker Crist, Mohit Kumar Sahu</p>
     </section>
 
   </main>
