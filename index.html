@@ -107,10 +107,11 @@
         <h1>One trusted customer identity</h1>
       </div>
       <p class="lead">Customer User is Sunrun's single record of who a customer is, how they log in, and which homes and systems they can access, across the customer app, portal.sunrun.com, InfoHub and Salesforce.</p>
+      <div class="note"><div class="bar"></div><p><strong style="color:var(--text)">Live in production today.</strong> Care uses it in InfoHub, the Sunrun app uses it for verification and self-service, and any app or experience can start using Customer User data now.</p></div>
       <div class="grid g3">
-        <div class="panel phase"><div class="k">Phase 1</div><div class="t">Auditing &amp; Tools</div><div class="s">Complete</div></div>
-        <div class="panel phase"><div class="k">Phase 2</div><div class="t">Data Reconciliation</div><div class="s">Complete</div></div>
-        <div class="panel phase hl"><div class="k">Phase 3</div><div class="t">Migration</div><div class="s">Underway</div></div>
+        <div class="panel phase"><div class="k">Phase 1</div><div class="t">Auditing &amp; Tools</div><div class="s">Complete · in production</div></div>
+        <div class="panel phase"><div class="k">Phase 2</div><div class="t">Data Reconciliation</div><div class="s">Complete · in production</div></div>
+        <div class="panel phase hl"><div class="k">Phase 3</div><div class="t">Sunrun app login migration</div><div class="s">Underway · cutover this fall</div></div>
       </div>
       <h3>Impact so far</h3>
       <div class="stats">
@@ -182,7 +183,7 @@
     <section data-label="Where the data lives">
       <div>
         <div class="eyebrow">Where the data lives</div>
-        <h2>Built in Salesforce, so everyone can consume it</h2>
+        <h2>Live in production. Start using it today.</h2>
       </div>
       <p class="lead">Every CRM table already replicates to the CDC replica and Snowflake, so Customer User was available to services, analytics and Data 360 from day one, with no new pipelines.</p>
       <div class="flow">
@@ -209,7 +210,7 @@
     <section data-label="What's next">
       <div>
         <div class="eyebrow">What's next</div>
-        <h2>Cutover this fall</h2>
+        <h2>Sunrun app login cutover this fall</h2>
       </div>
       <div class="grid g2">
         <div class="dots"><h3>In progress</h3><ul class="dots">
@@ -220,7 +221,7 @@
           <li><span class="d"></span>Location ID backfill on opportunities</li>
         </ul></div>
         <div class="dots em"><h3>Shipping next</h3><ul class="dots">
-          <li><span class="d"></span>Get User cutover: phased in November, full migration in December</li>
+          <li><span class="d"></span>Sunrun app login moves to Customer User: phased in November, full in December</li>
           <li><span class="d"></span>Close the gap: remaining ~80K active app users and ~800K opportunities</li>
           <li><span class="d"></span>Secondary users end to end: InfoHub management, auto-removal when a home is sold</li>
           <li><span class="d"></span>Verified email required to log in</li>
